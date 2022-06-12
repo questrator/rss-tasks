@@ -42,7 +42,7 @@ function findMissingNumber(input, n) {
             step--;
         }
     }
-    return absent[absent.length - 1] ? absent[absent.length - 1] + step : step;
+    return absent[absent.length - 1] ? step : input[input.length - 1] + step;
 }
 
 // Пропущены [5, 6, 7, 8, ...], второе пропущенное число - 6:
