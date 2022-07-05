@@ -44,17 +44,43 @@ function findMissingNumber(input, n) {
     }
     return absent[absent.length - 1] ? step : input[input.length - 1] + step;
 }
-//
-// Пропущены [5, 6, 7, 8, ...], второе пропущенное число - 6:
-console.log(findMissingNumber([1, 2, 3, 4], 2)); // 6.
+/*
+В функцию findMissingNumber передается массив с целыми положительными числами, 
+расположенными в порядке возрастания, а также число n. Необходимо найти n-ое по
+счету пропущенное в массиве число, начиная с 1.
+*/
+function findMissingNumber(arr, n) {
+    let last = arr[arr.length - 1] ?? 0;
+    let shift = arr.length - last + n;
+    if (shift > 0) return last + shift;
+    while (shift <= 0) {
+        if (arr.indexOf(last - 1)) {
+            last--;
+            shift++;
+        }
+    }
+    return last;
+}
 
-// Пропущены [1, 5, 6, 8, 9, 10, ...], пятое пропущенное число - 9:
-console.log(findMissingNumber([2, 3, 4, 7, 11], 5)); // 9
+// // Пропущены [5, 6, 7, 8, ...], второе пропущенное число - 6:
+// console.log(findMissingNumber([1, 2, 3, 4], 2)); // 6.
 
-console.log(findMissingNumber([5, 10, 14], 15)); // 18
+// // Пропущены [1, 5, 6, 8, 9, 10, ...], пятое пропущенное число - 9:
+// console.log(findMissingNumber([2, 3, 4, 7, 11], 5)); // 9
+// console.log(findMissingNumber([], 5)); // 5
 
 
+/*
+Реализовать функцию isSorted, которая проверяет отсортирован 
+ли переданный ей в параметры массив по возрастанию.
+*/
+function isSorted(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i - 1] > arr[i]) return false;
+    }
+    return true;
+}
 
-function isDivideBy(number, a, b) {
-    return !(number % a) && !(number % b);
-  }
+console.log(isSorted([1, 0])); // true
+console.log(isSorted([-Infinity, -5, 0, 3, 9])); // true
+console.log(isSorted([3, 9, -3, 10])); // false
