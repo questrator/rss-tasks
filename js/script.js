@@ -32,35 +32,35 @@ function formatDuration(seconds) {
 // console.log(formatDuration(33243586)); //'1 year, 19 days, 18 hours, 19 minutes and 46 seconds'
 
 
-function findMissingNumber(input, n) {
-  const absent = [];
-  let step = n;
-  for (let i = 1; i <= input[input.length - 1]; i++) {
-    if (absent.length === n) return absent[n - 1];
-    if (input.indexOf(i) === -1) {
-      absent.push(i);
-      step--;
-    }
-  }
-  return absent[absent.length - 1] ? step : input[input.length - 1] + step;
-}
+// function findMissingNumber(input, n) {
+//   const absent = [];
+//   let step = n;
+//   for (let i = 1; i <= input[input.length - 1]; i++) {
+//     if (absent.length === n) return absent[n - 1];
+//     if (input.indexOf(i) === -1) {
+//       absent.push(i);
+//       step--;
+//     }
+//   }
+//   return absent[absent.length - 1] ? step : input[input.length - 1] + step;
+// }
 /*
 В функцию findMissingNumber передается массив с целыми положительными числами, 
 расположенными в порядке возрастания, а также число n. Необходимо найти n-ое по
 счету пропущенное в массиве число, начиная с 1.
 */
-function findMissingNumber(arr, n) {
-  let last = arr[arr.length - 1] ?? 0;
-  let shift = arr.length - last + n;
-  if (shift > 0) return last + shift;
-  while (shift <= 0) {
-    if (arr.indexOf(last - 1)) {
-      last--;
-      shift++;
-    }
-  }
-  return last;
-}
+// function findMissingNumber(arr, n) {
+//   let last = arr[arr.length - 1] ?? 0;
+//   let shift = arr.length - last + n;
+//   if (shift > 0) return last + shift;
+//   while (shift <= 0) {
+//     if (arr.indexOf(last - 1)) {
+//       last--;
+//       shift++;
+//     }
+//   }
+//   return last;
+// }
 
 // // Пропущены [5, 6, 7, 8, ...], второе пропущенное число - 6:
 // console.log(findMissingNumber([1, 2, 3, 4], 2)); // 6.
@@ -92,11 +92,11 @@ function findMissingNumber(arr, n) {
 
 // console.log(sortMyString("CodeWars"));
 
-function sentence(list) {
-  return list.map(e => Object.entries(e)).flat();
-}
+// function sentence(list) {
+//   return list.map(e => Object.entries(e)).flat();
+// }
 
-console.log(sentence([
-  {'4': 'dog' }, {'2': 'took'}, {'3': 'his'}, 
-  {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'} 
- ]))
+// console.log(sentence([
+//   {'4': 'dog' }, {'2': 'took'}, {'3': 'his'}, 
+//   {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'} 
+//  ]))
