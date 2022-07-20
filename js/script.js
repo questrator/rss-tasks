@@ -100,3 +100,10 @@ function formatDuration(seconds) {
 //   {'4': 'dog' }, {'2': 'took'}, {'3': 'his'}, 
 //   {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'} 
 //  ]))
+
+
+const test = [[2, 3, 3, 8, 8, 8], [2, 4, 4, 9, 9], [2, 5, 5]];
+
+
+
+console.log(new Set([2, 2, 2, 3, 4, 4])); // -> {2, 3, 4}
