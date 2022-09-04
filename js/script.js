@@ -1,27 +1,27 @@
-function towelSort(array) {
-  return array.map((e, i) => e = (i % 2) ? e.reverse() : e);
-}
+// function towelSort(array) {
+//   return array.map((e, i) => e = (i % 2) ? e.reverse() : e);
+// }
 
-function formatDuration(seconds) {
-  if (seconds === 0) return "now";
-  const totalDays = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-  const s = seconds * 1000;
-  const year = new Date(s).getUTCFullYear() - 1970;
-  const month = new Date(s).getUTCMonth();
-  const day = new Date(s).getUTCDate() - 1;
+// function formatDuration(seconds) {
+//   if (seconds === 0) return "now";
+//   const totalDays = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+//   const s = seconds * 1000;
+//   const year = new Date(s).getUTCFullYear() - 1970;
+//   const month = new Date(s).getUTCMonth();
+//   const day = new Date(s).getUTCDate() - 1;
 
-  const time = [
-    ["year", year],
-    ["day", totalDays[month] + new Date(s).getUTCDate() - 1 + Math.floor((year - 1) / 4) + (year % 4 === 0 && month > 1)],
-    ["hour", new Date(s).getUTCHours()],
-    ["minute", new Date(s).getUTCMinutes()],
-    ["second", new Date(s).getUTCSeconds()]
-  ];
+//   const time = [
+//     ["year", year],
+//     ["day", totalDays[month] + new Date(s).getUTCDate() - 1 + Math.floor((year - 1) / 4) + (year % 4 === 0 && month > 1)],
+//     ["hour", new Date(s).getUTCHours()],
+//     ["minute", new Date(s).getUTCMinutes()],
+//     ["second", new Date(s).getUTCSeconds()]
+//   ];
 
-  const out = time.filter(e => e[1] > 0).map(e => `${e[1]} ${e[1] > 1 ? `${e[0]}s` : e[0]}`);
+//   const out = time.filter(e => e[1] > 0).map(e => `${e[1]} ${e[1] > 1 ? `${e[0]}s` : e[0]}`);
 
-  return out.length > 1 ? out.slice(0, out.length - 1).join(", ") + ` and ${out[out.length - 1]}` : out[0];
-}
+//   return out.length > 1 ? out.slice(0, out.length - 1).join(", ") + ` and ${out[out.length - 1]}` : out[0];
+// }
 
 // console.log(formatDuration(253374061)); //'8 years, 12 days, 13 hours, 41 minutes and 1 second'
 // console.log(formatDuration(132030240)); //'4 years, 68 days, 3 hours and 4 minutes'
@@ -102,8 +102,15 @@ function formatDuration(seconds) {
 //  ]))
 
 
-const test = [[2, 3, 3, 8, 8, 8], [2, 4, 4, 9, 9], [2, 5, 5]];
 
+function formatDuration(s) {
+  if (s === 0) return "now";
+  const durations = [null, 365, 24, 60, 60, 1];
+  const rawResult = ["year", "day", "hour", "minute", "second"]
+  .map((e, i) => [e, durations.slice(i + 1).reduce((r, e) =>  r *= e, 1), durations[i]])
+  .map(([key, secs, nums], i) => [key, i ? Math.floor(s / secs) % nums : Math.floor(s / secs)])
+  .filter(([_, v]) => v).map(([k, v]) => `${v} ${v > 1 ? `${k}s` : k}`);
+  return rawResult.reverse().join("~, ~").split("~").reverse().join("");
+}
 
-
-console.log(new Set([2, 2, 2, 3, 4, 4])); // -> {2, 3, 4}
+console.log(formatDuration(25456789));
