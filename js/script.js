@@ -114,3 +114,15 @@ function formatDuration(s) {
 }
 
 console.log(formatDuration(25456789));
+
+
+function brightest(colors) {
+  const getMax = (s) => Math.max(...s.match(/[A-F0-9]{2}/gi).map(e => parseInt(e, 16)));
+  return colors.reduce((r, e, i, a) => {
+      r = getMax(e) > r ? i : r;
+      return r;
+  }, 0);
+  // return colors.map(e => [e, Math.max(...e.match(/[A-F0-9]{2}/gi).map(e => parseInt(e, 16)))]);
+}
+
+console.log(brightest(["#A010F0", "#100ac0", "#001010"]));
